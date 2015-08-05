@@ -3,4 +3,16 @@
 body {
 	@extend .blue, .lighten-4;
 }
-
+.recipes {
+	.recipe-card {
+		&:nth-child(odd) {
+			float: left!important;
+		}
+		&:nth-child(even) {
+			float: right!important;
+		}
+	}
+}
+.main-container {
+	margin-top: 20px;
+}
