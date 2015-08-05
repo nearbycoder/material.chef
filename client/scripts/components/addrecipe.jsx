@@ -22,9 +22,9 @@ var AddRecipe = React.createClass({
 			return (
 				<div>
 				  <div className="col s12 m12">
-		        <a className="btn-floating btn-large waves-effect waves-light red lighten-1 addRecipeButton" onClick={this.popupAddRecipe}><i className="material-icons">clear</i></a>
+		        <a className="animated flip btn-floating btn-large waves-effect waves-light red lighten-1 addRecipeButton" onClick={this.popupAddRecipe}><i className="material-icons">clear</i></a>
 		      </div>
-		      <div className="col s12 m12 addRecipe">
+		      <div className="col s12 m12 addRecipe animated pulse">
 		        <div className="input-field col s8 offset-s2 red-text text-lighten-4">
 		          <input ref="title" type="text" id="title" className="red-text text-lighten-4"/>
 		          <label htmlFor="title" className="red-text text-lighten-4">Recipe Name</label>
@@ -37,7 +37,9 @@ var AddRecipe = React.createClass({
 		          <input ref="link" type="text" id="link" className="red-text text-lighten-4"/>
 		          <label htmlFor="link" className="red-text text-lighten-4">Link</label>
 		        </div>
-		        <a className="waves-effect waves-light red darken-1 btn" onClick={this.addRecipe}><i className="material-icons left"></i>Add Recipe</a>
+		        <div className="col s12">
+		        	<a className="waves-effect waves-light red darken-1 btn" onClick={this.addRecipe}><i className="material-icons left"></i>Add Recipe</a>
+		        </div>
 		      </div>
 
 				</div>

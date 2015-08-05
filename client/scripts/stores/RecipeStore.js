@@ -30,6 +30,7 @@ class RecipeStore {
 
 	handleAddRecipe(recipe) {
 		this.fullrecipes.push(recipe);
+		this.recipes = this.fullrecipes;
 	}
 }
 

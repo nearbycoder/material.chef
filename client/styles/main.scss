@@ -1,15 +1,19 @@
 @import "~materialize-sass/sass/materialize.scss";
+@import "/animate.scss";
 
 body {
 	@extend .blue, .lighten-4;
 }
 .recipes {
 	.recipe-card {
+		@extend .animated;
 		&:nth-child(odd) {
 			float: left!important;
+			@extend .bounceInLeft;
 		}
 		&:nth-child(even) {
 			float: right!important;
+			@extend .bounceInRight;
 		}
 	}
 }

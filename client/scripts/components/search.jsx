@@ -24,13 +24,11 @@ var Search = React.createClass({
 			<div>
 			  <nav>
 			    <div className="nav-wrapper blue">
-			      <form>
-			        <div className="input-field">
-			          <input id="search" ref="recipesearch" type="text" autoComplete="off" onKeyUp={this.filterRecipe} />
-			          <label htmlFor="search"><i className="material-icons">search</i></label>
-			          <i className="material-icons">close</i>
-			        </div>
-			      </form>
+		        <div className="input-field">
+		          <input id="search" ref="recipesearch" type="text" autoComplete="off" onKeyUp={this.filterRecipe} />
+		          <label htmlFor="search"><i className="material-icons">search</i></label>
+		          <i className="material-icons">close</i>
+		        </div>
 			    </div>
 			  </nav>
 			</div>
