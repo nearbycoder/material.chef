@@ -15,5 +15,8 @@ class RecipeActions {
 	addRecipe(recipe) {
 		this.dispatch(recipe)
 	}
+	hideRecipes() {
+		this.dispatch()
+	}
 }
 module.exports = alt.createActions(RecipeActions);

@@ -17,6 +17,19 @@ body {
 		}
 	}
 }
+.recipes {
+	.recipe-card-leave {
+		@extend .animated;
+		&:nth-child(odd) {
+			float: left!important;
+			@extend .fadeOutLeft;
+		}
+		&:nth-child(even) {
+			float: right!important;
+			@extend .fadeOutRight;
+		}
+	}
+}
 .main-container {
 	margin-top: 20px;
 }

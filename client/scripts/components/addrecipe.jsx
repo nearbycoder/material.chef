@@ -9,6 +9,7 @@ var AddRecipe = React.createClass({
 	},
 	popupAddRecipe(){
 		this.setState({modal: !this.state.modal});
+		RecipeActions.hideRecipes();
 	},
 	addRecipe() {
 		var title = this.refs.title.getDOMNode().value.trim();
