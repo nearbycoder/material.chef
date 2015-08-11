@@ -21,30 +21,17 @@ var RecipeBox = React.createClass({
 		this.setState(state);
 	},
 	eachRecipe: function(recipe, i) {
-		if(this.state.hidden){
-			return (
-				<Recipe
-					index={i}
-					key={i}
-					title = {recipe.title}
-					info = {recipe.info}
-					link = {recipe.link}
-					user = {recipe.user}
-					hidden = {true}
-				/>	
-			)
-		} else {
-			return (
-				<Recipe
-					index={i}
-					key={i}
-					title = {recipe.title}
-					info = {recipe.info}
-					link = {recipe.link}
-					user = {recipe.user}
-				/>	
-			)
-		}
+		return (
+			<Recipe
+				index={i}
+				key={i}
+				title = {recipe.title}
+				info = {recipe.info}
+				link = {recipe.link}
+				user = {recipe.user}
+				hidden = {this.state.hidden}
+			/>	
+		)
 	},
 	render: function(){
 		return(

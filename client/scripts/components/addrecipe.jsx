@@ -17,6 +17,7 @@ var AddRecipe = React.createClass({
 		var link = this.refs.link.getDOMNode().value.trim();
 		RecipeActions.addRecipe({title: title, info: description, link: link});
 		this.setState({modal: !this.state.modal});
+		RecipeActions.hideRecipes();
 	},
 	render() {	
 		if(this.state.modal){
