@@ -16,7 +16,7 @@ class RecipeStore {
 
 	handleRecipeSearch(searchText) {
 		this.recipes = this.fullrecipes.filter(function(recipe){
-			if(recipe.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1 || recipe.info.toLowerCase().indexOf(searchText.toLowerCase()) != -1){
+			if(recipe.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1 || recipe.info.toLowerCase().indexOf(searchText.toLowerCase()) != -1 || recipe.instructions.toLowerCase().indexOf(searchText.toLowerCase()) != -1 ){
 				return true;
 			} else {
 				return false;

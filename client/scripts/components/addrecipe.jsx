@@ -5,11 +5,12 @@ var AddRecipe = React.createClass({
 	getInitialState() {
 		return {
 			modal : false,
+			invalid: false,
 			ingredients : [{}],
 		}
 	},
 	popupAddRecipe(){
-		this.setState({modal: !this.state.modal});
+		this.setState({modal: !this.state.modal, invalid: false, ingredients: [{}]});
 		RecipeActions.hideRecipes();
 	},
 	addRecipe() {
@@ -24,10 +25,14 @@ var AddRecipe = React.createClass({
 			var measurement = _this.refs['measurement' + index].getDOMNode().value.trim();
 			ingredients.push({ingredient: ingredient, measurement: measurement})
 		})
-
-		RecipeActions.addRecipe({title: title, info: description, ingredients: ingredients, instructions: cookingInstructions});
-		this.setState({modal: !this.state.modal});
-		RecipeActions.hideRecipes();
+		if(title && description && cookingInstructions){
+			RecipeActions.addRecipe({title: title, info: description, ingredients: ingredients, instructions: cookingInstructions});
+			this.setState({modal: !this.state.modal, ingredients: [{}], invalid: false});
+			RecipeActions.hideRecipes();
+		} else {
+			this.setState({invalid: true});
+		}
+		
 	},
 	addIngredient() {
 		this.setState({ingredients: this.state.ingredients.concat({})});
@@ -71,23 +76,27 @@ var AddRecipe = React.createClass({
 		      </div>
 		      <div className="col s12 m12 addRecipe animated pulse">
 		        <div className="input-field col s8 offset-s2 red-text text-lighten-4">
-		          <input ref="title" type="text" id="title" className="red-text text-lighten-4"/>
+		          <input required ref="title" type="text" id="title" className="red-text text-lighten-4"/>
 		          <label htmlFor="title" className="red-text text-lighten-4">Recipe Name</label>
 		        </div>
 		        <div className="input-field col s8 offset-s2">
-		          <textarea ref="description" id="description" className="materialize-textarea red-text text-lighten-4"></textarea>
+		          <textarea required ref="description" id="description" className="materialize-textarea red-text text-lighten-4"></textarea>
 		          <label htmlFor="description">Description</label>
 		        </div>
 		        <div className="clear">
 		        </div>
 		        {this.state.ingredients.map(this.eachIngredient)}
 		        <div className="input-field col s8 offset-s2">
-		          <textarea ref="cookingInstructions" id="cookingInstructions" className="materialize-textarea red-text text-lighten-4"></textarea>
+		          <textarea required ref="cookingInstructions" id="cookingInstructions" className="materialize-textarea red-text text-lighten-4"></textarea>
 		          <label htmlFor="cookingInstructions">Cooking Instructions</label>
 		        </div>
 		        <div className="col s12">
 		        	<a className="waves-effect waves-light red darken-1 btn" onClick={this.addRecipe}><i className="material-icons left"></i>Add Recipe</a>
 		        </div>
+		        {this.state.invalid ? 
+		        	<div className="col s12">
+			        	<a className="waves-effect waves-light red darken-3 btn" onClick={this.addRecipe}><i className="material-icons left"></i>Recipe Name, Description and Cooking Instructions are required!</a>
+			        </div> : null}
 		      </div>
 
 				</div>
