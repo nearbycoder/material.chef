@@ -17,6 +17,9 @@ body {
 		}
 	}
 }
+.clear {
+	clear: both;
+}
 .recipes {
 	.recipe-card-leave {
 		@extend .animated;

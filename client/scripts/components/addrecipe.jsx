@@ -4,7 +4,8 @@ var RecipeActions = require("../actions/RecipeActions");
 var AddRecipe = React.createClass({
 	getInitialState() {
 		return {
-			modal : false
+			modal : false,
+			ingredients : [{}],
 		}
 	},
 	popupAddRecipe(){
@@ -12,12 +13,54 @@ var AddRecipe = React.createClass({
 		RecipeActions.hideRecipes();
 	},
 	addRecipe() {
+		var _this = this;
 		var title = this.refs.title.getDOMNode().value.trim();
 		var description = this.refs.description.getDOMNode().value.trim();
-		var link = this.refs.link.getDOMNode().value.trim();
-		RecipeActions.addRecipe({title: title, info: description, link: link});
+		var cookingInstructions = _this.refs.cookingInstructions.getDOMNode().value.trim();
+		var ingredients = [];
+
+		this.state.ingredients.forEach(function(el, index) {
+			var ingredient = _this.refs['ingredient' + index].getDOMNode().value.trim();
+			var measurement = _this.refs['measurement' + index].getDOMNode().value.trim();
+			ingredients.push({ingredient: ingredient, measurement: measurement})
+		})
+
+		RecipeActions.addRecipe({title: title, info: description, ingredients: ingredients, instructions: cookingInstructions});
 		this.setState({modal: !this.state.modal});
 		RecipeActions.hideRecipes();
+	},
+	addIngredient() {
+		this.setState({ingredients: this.state.ingredients.concat({})});
+	},
+	removeIngredient(i) {
+		var ingredients = this.state.ingredients;
+		ingredients.splice(i, 1);
+		this.setState({ingredients: ingredients});
+	},
+	eachIngredient(ingredient, i) {
+		var length = this.state.ingredients.length - 1;
+		return (
+			<div key={i}>
+				{i == length && i != 0 ?
+				<div className="col s2">
+		      <a className="animated flip btn-floating btn-large waves-effect waves-light red lighten-1" onClick={this.removeIngredient.bind(this, i)}><i className="material-icons">clear</i></a>
+		    </div> : null }
+				<div className={i != length || i == 0 ? "input-field col s4 offset-s2" : "input-field col s4"}>
+	        <input ref={"ingredient"+i} type="text" id={"ingredient"+i} className="red-text text-lighten-4"/>
+	        <label htmlFor={"ingredient"+i} className="red-text text-lighten-4">Ingredient</label>
+	      </div>
+	      <div className="input-field col s4">
+	        <input type="text" ref={"measurement"+i} id={"measurement"+i} className="red-text text-lighten-4"/>
+	        <label htmlFor={"measurement"+i} className="red-text text-lighten-4">Measurement</label>
+	      </div>
+	      {i == length ?
+	      <div className="col s2">
+        	<a className="animated flip btn-floating btn-large waves-effect waves-light red lighten-1" onClick={this.addIngredient}><i className="material-icons">add</i></a>
+        </div> : null }
+        <div className="clear">
+		    </div>
+	    </div>
+		)
 	},
 	render() {	
 		if(this.state.modal){
@@ -35,9 +78,12 @@ var AddRecipe = React.createClass({
 		          <textarea ref="description" id="description" className="materialize-textarea red-text text-lighten-4"></textarea>
 		          <label htmlFor="description">Description</label>
 		        </div>
+		        <div className="clear">
+		        </div>
+		        {this.state.ingredients.map(this.eachIngredient)}
 		        <div className="input-field col s8 offset-s2">
-		          <input ref="link" type="text" id="link" className="red-text text-lighten-4"/>
-		          <label htmlFor="link" className="red-text text-lighten-4">Link</label>
+		          <textarea ref="cookingInstructions" id="cookingInstructions" className="materialize-textarea red-text text-lighten-4"></textarea>
+		          <label htmlFor="cookingInstructions">Cooking Instructions</label>
 		        </div>
 		        <div className="col s12">
 		        	<a className="waves-effect waves-light red darken-1 btn" onClick={this.addRecipe}><i className="material-icons left"></i>Add Recipe</a>
