@@ -1,23 +1,38 @@
 var React = require("react");
 var RecipeActions = require("../actions/RecipeActions");
-
+var RecipeStore = require("../stores/RecipeStore");
 var AddRecipe = React.createClass({
 	getInitialState() {
 		return {
 			modal : false,
 			invalid: false,
-			ingredients : [{}],
+			ingredients : [{}]
 		}
 	},
+	componentDidMount() {
+		RecipeStore.listen(this.onChange);
+		RecipeActions.updateRecipes();
+	},
+	componentWillUnmount() {
+		RecipeStore.unlisten(this.onChange);
+	},
+	onChange(state) {
+		this.setState(state);
+	},
 	popupAddRecipe(){
-		this.setState({modal: !this.state.modal, invalid: false, ingredients: [{}]});
+		this.setState({modal: true, invalid: false, ingredients: [{}]});
 		RecipeActions.hideRecipes();
+	},
+	popupHideAddRecipe(){
+		this.setState({modal: false, invalid: false, ingredients: [{}]});
+		RecipeActions.showRecipes();
 	},
 	addRecipe() {
 		var _this = this;
 		var title = this.refs.title.getDOMNode().value.trim();
 		var description = this.refs.description.getDOMNode().value.trim();
 		var cookingInstructions = _this.refs.cookingInstructions.getDOMNode().value.trim();
+		var image = _this.refs.image.getDOMNode().value.trim();
 		var ingredients = [];
 
 		this.state.ingredients.forEach(function(el, index) {
@@ -26,9 +41,9 @@ var AddRecipe = React.createClass({
 			ingredients.push({ingredient: ingredient, measurement: measurement})
 		})
 		if(title && description && cookingInstructions){
-			RecipeActions.addRecipe({title: title, info: description, ingredients: ingredients, instructions: cookingInstructions});
-			this.setState({modal: !this.state.modal, ingredients: [{}], invalid: false});
-			RecipeActions.hideRecipes();
+			RecipeActions.addRecipe({title: title, info: description, ingredients: ingredients, instructions: cookingInstructions, img: image});
+			this.setState({modal: false, ingredients: [{}], invalid: false});
+			RecipeActions.showRecipes();
 		} else {
 			this.setState({invalid: true});
 		}
@@ -48,7 +63,7 @@ var AddRecipe = React.createClass({
 			<div key={i}>
 				{i == length && i != 0 ?
 				<div className="col s2">
-		      <a className="animated flip btn-floating btn-large waves-effect waves-light red lighten-1" onClick={this.removeIngredient.bind(this, i)}><i className="material-icons">clear</i></a>
+		      <a className="animated rubberBand btn-floating btn-large waves-effect waves-light red lighten-1" onClick={this.removeIngredient.bind(this, i)}><i className="material-icons">clear</i></a>
 		    </div> : null }
 				<div className={i != length || i == 0 ? "input-field col s4 offset-s2" : "input-field col s4"}>
 	        <input ref={"ingredient"+i} type="text" id={"ingredient"+i} className="red-text text-lighten-4"/>
@@ -60,7 +75,7 @@ var AddRecipe = React.createClass({
 	      </div>
 	      {i == length ?
 	      <div className="col s2">
-        	<a className="animated flip btn-floating btn-large waves-effect waves-light red lighten-1" onClick={this.addIngredient}><i className="material-icons">add</i></a>
+        	<a className="animated rubberBand btn-floating btn-large waves-effect waves-light red lighten-1" onClick={this.addIngredient}><i className="material-icons">add</i></a>
         </div> : null }
         <div className="clear">
 		    </div>
@@ -72,7 +87,7 @@ var AddRecipe = React.createClass({
 			return (
 				<div>
 				  <div className="col s12 m12">
-		        <a className="animated flip btn-floating btn-large waves-effect waves-light red lighten-1 addRecipeButton" onClick={this.popupAddRecipe}><i className="material-icons">clear</i></a>
+		        <a className="animated flip btn-floating btn-large waves-effect waves-light red lighten-1 addRecipeButton" onClick={this.state.model == true ? this.popupAddRecipe : this.popupHideAddRecipe}><i className="material-icons">clear</i></a>
 		      </div>
 		      <div className="col s12 m12 addRecipe animated pulse">
 		        <div className="input-field col s8 offset-s2 red-text text-lighten-4">
@@ -90,6 +105,10 @@ var AddRecipe = React.createClass({
 		          <textarea required ref="cookingInstructions" id="cookingInstructions" className="materialize-textarea red-text text-lighten-4"></textarea>
 		          <label htmlFor="cookingInstructions">Cooking Instructions</label>
 		        </div>
+		        <div className="input-field col s8 offset-s2 red-text text-lighten-4">
+		          <input required ref="image" type="text" id="image_url" className="red-text text-lighten-4"/>
+		          <label htmlFor="image_url" className="red-text text-lighten-4">Image Url</label>
+		        </div>
 		        <div className="col s12">
 		        	<a className="waves-effect waves-light red darken-1 btn" onClick={this.addRecipe}><i className="material-icons left"></i>Add Recipe</a>
 		        </div>
@@ -102,10 +121,12 @@ var AddRecipe = React.createClass({
 				</div>
 			);
 		}
-
 		return (
 			<div>
 			  <div className="col s12 m12">
+			  	{RecipeStore.getState().single ? 
+				  	<a className="animated flip btn-floating btn-large waves-effect waves-light blue lighten-1 addRecipeButton go-back" onClick={this.state.model == true ? this.popupAddRecipe : this.popupHideAddRecipe}><i className="material-icons">clear</i></a>
+				  : null}
 	        <a className="btn-floating btn-large waves-effect waves-light blue darken-1" onClick={this.popupAddRecipe}><i className="material-icons">add</i></a>
 	      </div>
 			</div>

@@ -25,6 +25,7 @@ var RecipeBox = React.createClass({
 			<Recipe
 				index={i}
 				key={i}
+				img={recipe.img}
 				title = {recipe.title}
 				info = {recipe.info}
 				link = {recipe.link}
@@ -36,7 +37,18 @@ var RecipeBox = React.createClass({
 	render: function(){
 		return(
 			<div>
-			  {this.state.recipes.map(this.eachRecipe)}
+				{this.state.single ?
+				<div className='col s12 m12 animated fadeInUp'>
+	        <div className="card blue">
+	          <div className="recipeImage" style={this.state.singlerecipe.img ? {backgroundImage:'url(' + this.state.singlerecipe.img + ')'} : null }></div>
+	          <div className="card-content white-text">
+	            <span className="card-title">{this.state.singlerecipe.title}</span>
+	            <p>{this.state.singlerecipe.info}</p>
+	          </div>
+	        </div>
+      	</div>
+				: null}
+			  {this.state.single ? null : this.state.recipes.map(this.eachRecipe)}
 			</div>
 		)
 	}
