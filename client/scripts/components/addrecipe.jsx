@@ -126,8 +126,7 @@ var AddRecipe = React.createClass({
 			  <div className="col s12 m12">
 			  	{RecipeStore.getState().single ? 
 				  	<a className="animated flip btn-floating btn-large waves-effect waves-light blue lighten-1 addRecipeButton go-back" onClick={this.state.model == true ? this.popupAddRecipe : this.popupHideAddRecipe}><i className="material-icons">clear</i></a>
-				  : null}
-	        <a className="btn-floating btn-large waves-effect waves-light blue darken-1" onClick={this.popupAddRecipe}><i className="material-icons">add</i></a>
+				  : <a className="btn-floating btn-large waves-effect waves-light blue darken-1" onClick={this.popupAddRecipe}><i className="material-icons">add</i></a>}
 	      </div>
 			</div>
 		)

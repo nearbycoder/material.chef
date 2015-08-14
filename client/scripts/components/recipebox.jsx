@@ -1,8 +1,9 @@
 var React = require("react");
 var Recipe = require("./recipe.jsx");
+var SingleRecipe = require("./singlerecipe.jsx");
 var SearchStore = require("../stores/SearchStore");
 var RecipeStore = require("../stores/RecipeStore");
-var RecipeActions = require("../actions/RecipeActions")
+var RecipeActions = require("../actions/RecipeActions");
 
 var RecipeBox = React.createClass({
 	getInitialState() {
@@ -38,17 +39,13 @@ var RecipeBox = React.createClass({
 		return(
 			<div>
 				{this.state.single ?
-				<div className='col s12 m12 animated fadeInUp'>
-	        <div className="card blue">
-	          <div className="recipeImage" style={this.state.singlerecipe.img ? {backgroundImage:'url(' + this.state.singlerecipe.img + ')'} : null }></div>
-	          <div className="card-content white-text">
-	            <span className="card-title">{this.state.singlerecipe.title}</span>
-	            <p>{this.state.singlerecipe.info}</p>
-	          </div>
-	        </div>
-      	</div>
-				: null}
-			  {this.state.single ? null : this.state.recipes.map(this.eachRecipe)}
+				<SingleRecipe
+				img={this.state.singlerecipe.img}
+				title={this.state.singlerecipe.title}
+				info={this.state.singlerecipe.info}
+				instructions={this.state.singlerecipe.instructions}
+				/>
+				: this.state.recipes.map(this.eachRecipe)}
 			</div>
 		)
 	}
