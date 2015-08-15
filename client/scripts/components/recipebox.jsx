@@ -43,6 +43,7 @@ var RecipeBox = React.createClass({
 				img={this.state.singlerecipe.img}
 				title={this.state.singlerecipe.title}
 				info={this.state.singlerecipe.info}
+				ingredients={this.state.singlerecipe.ingredients}
 				instructions={this.state.singlerecipe.instructions}
 				/>
 				: this.state.recipes.map(this.eachRecipe)}

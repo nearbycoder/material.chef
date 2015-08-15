@@ -1,5 +1,10 @@
 var React = require("react");
 var SingleRecipe = React.createClass({
+  eachIngredient(ingredient, i) {
+      return (
+        <li key={i}>{ingredient.ingredient} : {ingredient.measurement}</li>
+      )
+  },
 	render: function(){
     return(
       <div className='col s12 m12 animated fadeInUp'>
@@ -8,6 +13,9 @@ var SingleRecipe = React.createClass({
           <div className="card-content white-text">
             <span className="card-title">{this.props.title}</span>
             <p>{this.props.info}</p>
+            <ul>
+              {this.props.ingredients.map(this.eachIngredient)}
+            </ul>
           </div>
         </div>
       </div>
