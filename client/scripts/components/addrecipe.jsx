@@ -41,7 +41,7 @@ var AddRecipe = React.createClass({
 			ingredients.push({ingredient: ingredient, measurement: measurement})
 		})
 		if(title && description && cookingInstructions){
-			RecipeActions.addRecipe({title: title, info: description, ingredients: ingredients, instructions: cookingInstructions, img: image});
+			RecipeActions.addRecipe({title: title, info: description, ingredients: ingredients, cookingInstructions: cookingInstructions, img: image});
 			this.setState({modal: false, ingredients: [{}], invalid: false});
 			RecipeActions.showRecipes();
 		} else {

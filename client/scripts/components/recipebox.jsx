@@ -45,6 +45,7 @@ var RecipeBox = React.createClass({
 				info={this.state.singlerecipe.info}
 				ingredients={this.state.singlerecipe.ingredients}
 				instructions={this.state.singlerecipe.instructions}
+				cookingInstructions={this.state.singlerecipe.cookingInstructions}
 				/>
 				: this.state.recipes.map(this.eachRecipe)}
 			</div>

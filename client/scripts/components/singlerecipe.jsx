@@ -13,9 +13,12 @@ var SingleRecipe = React.createClass({
           <div className="card-content white-text">
             <span className="card-title">{this.props.title}</span>
             <p>{this.props.info}</p>
+            <h5>Ingredients:</h5>
             <ul>
               {this.props.ingredients.map(this.eachIngredient)}
             </ul>
+            <h5>Cooking Instructions:</h5>
+            <p>{this.props.cookingInstructions}</p>
           </div>
         </div>
       </div>
