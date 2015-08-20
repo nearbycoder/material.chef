@@ -40,7 +40,7 @@ class UserStore {
 			.set('Accept', 'application/json')
 			.end(function(err, res){
 				if(JSON.parse(res.text)["authorized"]){
-					this.setState({userLoggedIn : true});
+					this.setState({userLoggedIn : true, warning: false});
 					callback();
 				} else {
 					this.setState({userLoggedIn : false});

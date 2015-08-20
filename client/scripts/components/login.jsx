@@ -60,8 +60,10 @@ var Login = React.createClass({
 	          		</div>
 	          	</div>
 	          	{this.state.warning ? 
-	          		<div className="row">
-	          		warning
+	          		<div className="row text-align-center">
+	          		<button className="btn waves-effect waves-light blue lighten-2" type="submit" name="action">
+							    Email or Password does not exists!
+							  </button>
 	          		</div>
 	          	: null}
 	          </div>
