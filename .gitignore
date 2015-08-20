@@ -1,6 +1,6 @@
 
 client/node_modules/*
-
+client/scripts/configs/*
 !client/node_modules/materialize-sass
 
 server/node_modules/*

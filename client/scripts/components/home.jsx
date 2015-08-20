@@ -5,16 +5,19 @@ var AddRecipe = require("../components/addrecipe.jsx");
 var RecipeBox = require("../components/recipebox.jsx");
 var UserStore = require("../stores/UserStore.js");
 var UserActions = require("../actions/UserActions.js");
+var config = require("../configs/config.js");
+var request = require("superagent");
 var Router = require("react-router");
 
 var App = React.createClass({
 	mixins : [Router.Navigation],
-
 	searchText: "",
-	componentWillMount: function() {
-		 if(!this.state.userLoggedIn){
-		 	 this.transitionTo('/login');
-		 }  
+	componentWillMount() {
+		UserActions.userIsLoggedIn(function(){
+			if(!this.state.userLoggedIn){
+				this.transitionTo('/login');
+			}
+		}.bind(this));
 	},
 	getInitialState() {
 		return UserStore.getState();

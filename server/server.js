@@ -17,10 +17,8 @@ var mongoose = require('mongoose');
 mongoose.connect(settings.db); // connect to our database
 var User = require('./models/user');
 
-// create our router
-var router = express.Router();
-
 var api = express.Router();
+
 api.use(function(req, res, next) {
 
   // check header or url parameters or post parameters for token
@@ -50,11 +48,16 @@ api.use(function(req, res, next) {
   }
 });
 
+api.route('/')
+	.get(function(req, res) {
+		res.json({ authorized: true });	
+});
 
-// middleware to use for all requests
+app.use('/api', api	);
+
+var router = express.Router();
+
 router.use(function(req, res, next) {
-	// do logging
-	console.log('Something is happening.');
 	next();
 });
 
@@ -99,8 +102,6 @@ router.route('/login')
 
 	  });
 	});
-
-
 app.use('/', router);
 
 server.listen(port);
