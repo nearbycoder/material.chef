@@ -73,6 +73,11 @@ class UserStore {
 			.set('x-access-token', localStorage.getItem('x-access-token'))
 			.set('Accept', 'application/json')
 			.end(function(err, res){
+				if(err){
+					this.setState({userLoggedIn : false, warning: "server is unreachable!"});
+					return callback();
+				}
+
 				if(JSON.parse(res.text)["authorized"]){
 					this.setState({userLoggedIn : true, warning: false, requirements: false});
 					callback();
