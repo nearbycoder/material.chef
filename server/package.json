@@ -16,6 +16,7 @@
   },
   "main": "server.js",
   "dependencies": {
+    "bcryptjs": "^2.2.1",
     "body-parser": "~1.0.1",
     "cors": "^2.7.1",
     "express": "~4.0.0",

@@ -10,5 +10,8 @@ class UserActions {
 	userLogin(user) {
 		this.dispatch(user);
 	}
+	userSignUp(user) {
+		this.dispatch(user);
+	}
 }
 module.exports = alt.createActions(UserActions);

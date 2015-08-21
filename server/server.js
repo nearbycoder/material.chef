@@ -5,6 +5,7 @@ var server = require('http').createServer(app);
 var settings = require('./config');
 var jwt    = require('jsonwebtoken');
 var cors = require('cors');
+var bcrypt = require('bcryptjs');
 
 // configure app
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,6 +13,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 var port = process.env.PORT || 9090; // set our port
+
+
 
 var mongoose = require('mongoose');
 mongoose.connect(settings.db); // connect to our database
@@ -80,9 +83,9 @@ router.route('/login')
 	    } else if (user) {
 
 	      // check if password matches
-	      if (user.password != req.body.password) {
+	      if (!bcrypt.compareSync(req.body.password, user.password)) {
 	        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-	      } else {
+	      } else if(bcrypt.compareSync(req.body.password, user.password)) {
 
 	        // if user is found and password is right
 	        // create a token
@@ -97,6 +100,55 @@ router.route('/login')
 	          token: token
 	        });
 	      }   
+
+	    }
+
+	  });
+	});
+router.route('/signup')
+	.post(function(req, res) {
+		// find the user
+	  User.findOne({
+	    email: req.body.email
+	  }, function(err, user) {
+
+	    if (err) throw err;
+
+	    if (user) {
+	      res.json({ success: false, message: 'User already exists!' });
+	    } else if (!user) {
+	    	var emailfilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+				var passwordfilter = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/;
+
+				if(!emailfilter.test(req.body.email)){
+					return res.json({ success: false, message: 'email not valid!' });
+				}
+				if(!passwordfilter.test(req.body.password)){
+					return res.json({ success: false, message: 'password not strong enough!' });
+				}
+				var salt = bcrypt.genSaltSync(10);
+	    	var user = new User({
+	    		email: req.body.email,
+	    		password: bcrypt.hashSync(req.body.password, salt)
+	    	})
+
+	    	user.save(function(err) {
+	    		if(err) throw err;
+
+	    		// if user is found and password is right
+	        // create a token
+	        var token = jwt.sign({email : req.body.email}, settings.secret, {
+	          expiresInMinutes: 1440 // expires in 24 hours
+	        });
+
+	        // return the information including token as JSON
+	        res.json({
+	          success: true,
+	          message: 'Enjoy your token!',
+	          token: token
+	        });
+	    	})
+        
 
 	    }
 

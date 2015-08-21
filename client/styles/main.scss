@@ -12,6 +12,12 @@
 
 }
 
+.break {
+	display: inline-block !important;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
 .nav-right {
 	position: absolute;
 	right: 10px;
@@ -46,11 +52,6 @@
 		border-bottom: #C8E4FF !important;
 		box-shadow: 0 1px 0 0  #C8E4FF !important;
 	}
-}
-.loginbtn {
-	text-align: center;
-	display: block;
-	margin: 0 auto;
 }
 
 body {

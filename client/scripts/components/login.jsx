@@ -33,6 +33,13 @@ var Login = React.createClass({
 			this.transitionTo('/');
 		}.bind(this)});
 	},
+	signUp() {
+		var email = this.refs.email.getDOMNode().value.trim();
+		var password = this.refs.password.getDOMNode().value.trim();
+		UserActions.userSignUp({email: email, password: password, callback: function(){
+			this.transitionTo('/');
+		}.bind(this)});
+	},
 	render() {
 		return(
 			<div className="container main-container">
@@ -55,15 +62,23 @@ var Login = React.createClass({
 				        </div>
 				      </div>
 				      <div className="row">
-				      	<div className="col s12">
-				      		<button className="loginbtn btn waves-effect waves-light blue darken-2" onClick={this.getJWT}>Login</button>
+				      	<div className="col s12 text-align-center">
+				      		<button className="btn waves-effect waves-light blue darken-2 break" onClick={this.getJWT}>Login</button>
+				      		<button className="btn waves-effect waves-light blue darken-2 break" onClick={this.signUp}>SignUp</button>
 	          		</div>
 	          	</div>
 	          	{this.state.warning ? 
 	          		<div className="row text-align-center">
-	          		<button className="btn waves-effect waves-light blue lighten-2" type="submit" name="action">
-							    Email or Password does not exists!
-							  </button>
+	          		<div className="btn waves-effect waves-light blue lighten-2" name="action">
+							    {this.state.warning}
+							  </div>
+	          		</div>
+	          	: null}
+	          	{this.state.requirements ? 
+	          		<div className="row text-align-center">
+	          		<div className="">
+							    {this.state.requirements}
+							  </div>
 	          		</div>
 	          	: null}
 	          </div>
