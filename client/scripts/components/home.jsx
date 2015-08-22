@@ -15,7 +15,7 @@ var App = React.createClass({
 	componentWillMount() {
 		UserActions.userIsLoggedIn(function(){
 			if(!this.state.userLoggedIn){
-				this.transitionTo('/login');
+				/*this.transitionTo('/login');*/
 			}
 		}.bind(this));
 	},
@@ -32,17 +32,29 @@ var App = React.createClass({
 		this.setState(state);
 	},
 	render: function() {
-		return(
-			<div>
-				<Search />
-				<div className="container main-container">
-					<div className="row recipes">
-						<AddRecipe />
-						<RecipeBox />
+		if(this.state.warning){
+			return(
+			<div className="container main-container">
+				<div className="row text-align-center">
+	    		<div className="btn waves-effect waves-light blue lighten-2" name="action">
+				    {this.state.warning}
+				  </div>
+	    	</div>
+	    </div>
+    	)
+		} else {
+			return(
+				<div>
+					<Search />
+					<div className="container main-container">
+						<div className="row recipes">
+							<AddRecipe />
+							<RecipeBox />
+						</div>
 					</div>
 				</div>
-			</div>
-		)
+			)
+		}
 	}
 });
 

@@ -87,8 +87,18 @@ class UserStore {
 				}
 			}.bind(this));
 		} else {
-			this.setState({userLoggedIn : false});
-			callback();
+			request
+				.get(config.url)
+				.set('Accept', 'application/json')
+				.end(function(err, res){
+					if(err){
+						this.setState({userLoggedIn : false, warning: "server is unreachable!"});
+						return callback();
+					}
+					this.setState({userLoggedIn : false});
+					callback();
+				}.bind(this));
+			
 		}
 	}
 

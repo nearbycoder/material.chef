@@ -2,6 +2,7 @@ var React = require("react");
 var SearchStore = require("../stores/SearchStore");
 var RecipeActions = require("../actions/RecipeActions");
 var UserActions = require("../actions/UserActions.js");
+var UserStore = require("../stores/UserStore.js");
 var Router = require("react-router");
 
 var Search = React.createClass({
@@ -27,6 +28,9 @@ var Search = React.createClass({
 			this.transitionTo('/login');
 		}.bind(this));
 	},
+	login() {
+		this.transitionTo('/login');
+	},
 	render: function(){
 		return(
 			<div>
@@ -37,9 +41,12 @@ var Search = React.createClass({
 		          <label htmlFor="search"><i className="material-icons">search</i></label>
 		          <i className="material-icons">close</i>
 		        </div>
-		        <button onClick={this.logout} className="nav-right btn waves-effect waves-light blue darken-2">
+		        {(UserStore.getState()["userLoggedIn"]) ? <button onClick={this.logout} className="nav-right btn waves-effect waves-light blue darken-2">
 		        	Logout
 		        </button>
+		        : <button onClick={this.login} className="nav-right btn waves-effect waves-light blue darken-2">
+		        	Login
+		        </button> }
 			    </div>
 			  </nav>
 			</div>

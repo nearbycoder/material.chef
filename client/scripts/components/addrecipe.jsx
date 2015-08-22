@@ -1,6 +1,7 @@
 var React = require("react");
 var RecipeActions = require("../actions/RecipeActions");
 var RecipeStore = require("../stores/RecipeStore");
+var UserStore = require("../stores/UserStore.js");
 var AddRecipe = React.createClass({
 	getInitialState() {
 		return {
@@ -83,7 +84,7 @@ var AddRecipe = React.createClass({
 		)
 	},
 	render() {	
-		if(this.state.modal){
+		if(this.state.modal && UserStore.getState()["userLoggedIn"]){
 			return (
 				<div>
 				  <div className="col s12 m12">
@@ -120,16 +121,27 @@ var AddRecipe = React.createClass({
 
 				</div>
 			);
+		} else if(RecipeStore.getState()["single"]) {
+			return (
+				<div>
+			  	<div className="col s12 m12">
+						<a className="animated flip btn-floating btn-large waves-effect waves-light blue lighten-1 addRecipeButton go-back" onClick={this.state.model == true ? this.popupAddRecipe : this.popupHideAddRecipe}>
+							<i className="material-icons">clear</i>
+						</a>
+					</div>
+				</div>
+			)
+		} else if(UserStore.getState()["userLoggedIn"]){
+			return (
+				<div>
+				  <div className="col s12 m12">
+				  	<a className="btn-floating btn-large waves-effect waves-light blue darken-1" onClick={this.popupAddRecipe}><i className="material-icons">add</i></a>
+		      </div>
+				</div>
+			)
+		} else {
+			return(null)
 		}
-		return (
-			<div>
-			  <div className="col s12 m12">
-			  	{RecipeStore.getState().single ? 
-				  	<a className="animated flip btn-floating btn-large waves-effect waves-light blue lighten-1 addRecipeButton go-back" onClick={this.state.model == true ? this.popupAddRecipe : this.popupHideAddRecipe}><i className="material-icons">clear</i></a>
-				  : <a className="btn-floating btn-large waves-effect waves-light blue darken-1" onClick={this.popupAddRecipe}><i className="material-icons">add</i></a>}
-	      </div>
-			</div>
-		)
 	}
 });
 
