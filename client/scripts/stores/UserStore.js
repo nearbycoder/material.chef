@@ -104,7 +104,7 @@ class UserStore {
 
 	handleUserLogOut(callback) {
 		localStorage.removeItem('x-access-token');
-		callback();
+		this.setState({userLoggedIn : false});
 	}
 }
 

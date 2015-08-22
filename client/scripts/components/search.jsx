@@ -24,9 +24,7 @@ var Search = React.createClass({
 		RecipeActions.filterRecipes(recipeSearch);
 	},
 	logout() {
-		UserActions.userLogOut(function(){
-			this.transitionTo('/login');
-		}.bind(this));
+		UserActions.userLogOut();
 	},
 	login() {
 		this.transitionTo('/login');
