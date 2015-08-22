@@ -1,12 +1,12 @@
-var alt = require("../alt");
-var RecipeActions = require("../actions/RecipeActions")
+const alt = require("../alt");
+const RecipeActions = require("../actions/RecipeActions")
 class RecipeStore {
 	constructor() {
 		this.recipes = [];
 		this.fullrecipes = [];
 		this.hidden = false;
 		this.single = false;
-		this.singlerecipe;
+		this.singlerecipe = {};
 
 		this.bindListeners({
 			handleRecipeSearch: RecipeActions.FILTER_RECIPES,
@@ -20,10 +20,10 @@ class RecipeStore {
 	}
 	handleRecipeSearch(searchText) {
 		this.recipes = this.fullrecipes.filter(function(recipe){
-			if(recipe.title.toLowerCase().indexOf(searchText.toLowerCase()) != -1 || recipe.info.toLowerCase().indexOf(searchText.toLowerCase()) != -1 || recipe.instructions.toLowerCase().indexOf(searchText.toLowerCase()) != -1 ){
+			if(recipe.title.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ||
+			recipe.info.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ||
+			recipe.instructions.toLowerCase().indexOf(searchText.toLowerCase()) !== -1 ){
 				return true;
-			} else {
-				return false;
 			}
 		})
 		return this.recipes
@@ -47,7 +47,7 @@ class RecipeStore {
 	handleSelectRecipe(id) {
 		this.hidden = true;
 		setTimeout(function(){RecipeActions.animate()}, 700);
-		
+
 		this.singlerecipe = this.recipes[id];
 	}
 	handleAnimate() {

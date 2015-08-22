@@ -1,7 +1,7 @@
-var alt = require("../alt");
-var UserActions = require("../actions/UserActions");
-var config = require("../configs/config.js");
-var request = require("superagent");
+const alt = require("../alt");
+const UserActions = require("../actions/UserActions");
+const config = require("../configs/config.js");
+const request = require("superagent");
 class UserStore {
 	constructor() {
 		this.userLoggedIn = false;
@@ -23,11 +23,11 @@ class UserStore {
 			.send({email: user.email, password: user.password})
 			.set('Accept', 'application/json')
 			.end(function(err, res){
-				if(JSON.parse(res.text)['token']){
-					localStorage.setItem('x-access-token', JSON.parse(res.text)['token']);
-					return user.callback();
-					
-				} else {
+				if(JSON.parse(res.text).token){
+					localStorage.setItem('x-access-token', JSON.parse(res.text).token);
+					user.callback();
+
+				}else{
 					this.setState({warning : "Email or Password Does Not Exists!"})
 				}
 			}.bind(this))
@@ -38,14 +38,15 @@ class UserStore {
 
 	handleUserSignUp(user){
 		if(user.email && user.password){
-			var emailfilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
-			var passwordfilter = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/;
+			const emailfilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
+			const passwordfilter = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/;
 
 			if(!emailfilter.test(user.email)){
 				return this.setState({warning : "Invalid Email!"})
 			}
 			if(!passwordfilter.test(user.password)){
-				return this.setState({warning : "Please make sure your password is secured", requirements : "Password must contain one capital letter, one lowercase letter, one symbold and must be between 6 and 20 characters long!"})
+				return this.setState({warning : "Please make sure your password is secured",
+				 requirements : "Password must contain one capital letter, one lowercase letter, one symbold and must be between 6 and 20 characters long!"})
 			}
 
 		request
@@ -53,10 +54,10 @@ class UserStore {
 			.send({email: user.email, password: user.password})
 			.set('Accept', 'application/json')
 			.end(function(err, res){
-				if(JSON.parse(res.text)['token']){
-					localStorage.setItem('x-access-token', JSON.parse(res.text)['token']);
-					return user.callback();
-					
+				if(JSON.parse(res.text).token){
+					localStorage.setItem('x-access-token', JSON.parse(res.text).token);
+					user.callback();
+
 				} else {
 					this.setState({warning : "Email already exists!"})
 				}
@@ -78,7 +79,7 @@ class UserStore {
 					return callback();
 				}
 
-				if(JSON.parse(res.text)["authorized"]){
+				if(JSON.parse(res.text).authorized){
 					this.setState({userLoggedIn : true, warning: false, requirements: false});
 					callback();
 				} else {
@@ -90,7 +91,7 @@ class UserStore {
 			request
 				.get(config.url)
 				.set('Accept', 'application/json')
-				.end(function(err, res){
+				.end(function(err){
 					if(err){
 						this.setState({userLoggedIn : false, warning: "server is unreachable!"});
 						return callback();
@@ -98,11 +99,10 @@ class UserStore {
 					this.setState({userLoggedIn : false});
 					callback();
 				}.bind(this));
-			
 		}
 	}
 
-	handleUserLogOut(callback) {
+	handleUserLogOut() {
 		localStorage.removeItem('x-access-token');
 		this.setState({userLoggedIn : false});
 	}

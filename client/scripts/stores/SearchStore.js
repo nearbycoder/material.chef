@@ -1,5 +1,5 @@
-var alt = require("../alt");
-var SearchActions = require("../actions/SearchActions")
+const alt = require("../alt");
+const SearchActions = require("../actions/SearchActions")
 class SearchStore {
 	constructor() {
 		this.searchText = "";

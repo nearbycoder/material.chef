@@ -1,11 +1,11 @@
-var React = require("react");
-var SearchStore = require("../stores/SearchStore");
-var RecipeActions = require("../actions/RecipeActions");
-var UserActions = require("../actions/UserActions.js");
-var UserStore = require("../stores/UserStore.js");
-var Router = require("react-router");
+const React = require("react");
+const SearchStore = require("../stores/SearchStore");
+const RecipeActions = require("../actions/RecipeActions");
+const UserActions = require("../actions/UserActions.js");
+const UserStore = require("../stores/UserStore.js");
+const Router = require("react-router");
 
-var Search = React.createClass({
+const Search = React.createClass({
 	mixins : [Router.Navigation],
 	getInitialState() {
 		return SearchStore.getState();
@@ -20,7 +20,7 @@ var Search = React.createClass({
 		this.setState(state);
 	},
 	filterRecipe: function(){
-		var recipeSearch = this.refs.recipesearch.getDOMNode().value.trim();
+		let recipeSearch = this.refs.recipesearch.getDOMNode().value.trim();
 		RecipeActions.filterRecipes(recipeSearch);
 	},
 	logout() {
@@ -32,21 +32,21 @@ var Search = React.createClass({
 	render: function(){
 		return(
 			<div>
-			  <nav>
-			    <div className="nav-wrapper blue">
-		        <div className="input-field">
-		          <input id="search" ref="recipesearch" type="text" autoComplete="off" onKeyUp={this.filterRecipe} />
-		          <label htmlFor="search"><i className="material-icons">search</i></label>
-		          <i className="material-icons">close</i>
-		        </div>
-		        {(UserStore.getState()["userLoggedIn"]) ? <button onClick={this.logout} className="nav-right btn waves-effect waves-light blue darken-2">
+				<nav>
+					<div className="nav-wrapper blue">
+			    	<div className="input-field">
+			      	<input id="search" ref="recipesearch" type="text" autoComplete="off" onKeyUp={this.filterRecipe} />
+		        	<label htmlFor="search"><i className="material-icons">search</i></label>
+		        	<i className="material-icons">close</i>
+			  		</div>
+						{(UserStore.getState().userLoggedIn) ? <button onClick={this.logout} className="nav-right btn waves-effect waves-light blue darken-2">
 		        	Logout
-		        </button>
-		        : <button onClick={this.login} className="nav-right btn waves-effect waves-light blue darken-2">
+		    		</button>
+		    		:<button onClick={this.login} className="nav-right btn waves-effect waves-light blue darken-2">
 		        	Login
-		        </button> }
-			    </div>
-			  </nav>
+		    		</button> }
+					</div>
+				</nav>
 			</div>
 		)
 	}

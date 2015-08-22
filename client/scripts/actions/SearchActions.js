@@ -1,4 +1,4 @@
-var alt = require('../alt');
+const alt = require('../alt');
 
 class SearchActions {
 	sendSearch(searchText) {

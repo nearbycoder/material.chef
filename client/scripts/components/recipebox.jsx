@@ -1,11 +1,11 @@
-var React = require("react");
-var Recipe = require("./recipe.jsx");
-var SingleRecipe = require("./singlerecipe.jsx");
-var SearchStore = require("../stores/SearchStore");
-var RecipeStore = require("../stores/RecipeStore");
-var RecipeActions = require("../actions/RecipeActions");
+const React = require("react");
+const Recipe = require("./recipe.jsx");
+const SingleRecipe = require("./singlerecipe.jsx");
+const SearchStore = require("../stores/SearchStore");
+const RecipeStore = require("../stores/RecipeStore");
+const RecipeActions = require("../actions/RecipeActions");
 
-var RecipeBox = React.createClass({
+const RecipeBox = React.createClass({
 	getInitialState() {
 		return RecipeStore.getState();
 	},
@@ -32,7 +32,7 @@ var RecipeBox = React.createClass({
 				link = {recipe.link}
 				user = {recipe.user}
 				hidden = {this.state.hidden}
-			/>	
+			/>
 		)
 	},
 	render: function(){
