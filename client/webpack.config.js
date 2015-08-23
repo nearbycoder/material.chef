@@ -1,3 +1,6 @@
+var webpack = require("webpack");
+var path = require("path");
+
 module.exports = {
     entry: "./scripts/routes/app.jsx",
     output: {

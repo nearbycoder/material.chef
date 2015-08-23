@@ -1,3 +1,4 @@
+"use strict";
 const React = require("react");
 require("../../styles/main.scss");
 const Search = require("../components/search.jsx");

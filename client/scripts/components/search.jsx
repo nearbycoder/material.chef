@@ -1,3 +1,4 @@
+"use strict";
 const React = require("react");
 const SearchStore = require("../stores/SearchStore");
 const RecipeActions = require("../actions/RecipeActions");

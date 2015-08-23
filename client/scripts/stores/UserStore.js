@@ -1,3 +1,4 @@
+"use strict";
 const alt = require("../alt");
 const UserActions = require("../actions/UserActions");
 const config = require("../configs/config.js");

@@ -1,3 +1,4 @@
+"use strict";
 const React = require("react");
 const Recipe = require("./recipe.jsx");
 const SingleRecipe = require("./singlerecipe.jsx");

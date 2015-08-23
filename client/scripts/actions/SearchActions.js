@@ -1,3 +1,4 @@
+"use strict";
 const alt = require('../alt');
 
 class SearchActions {

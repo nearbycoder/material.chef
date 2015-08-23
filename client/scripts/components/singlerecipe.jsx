@@ -1,3 +1,4 @@
+"use strict";
 const React = require("react");
 const SingleRecipe = React.createClass({
   eachIngredient(ingredient, i) {

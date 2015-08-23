@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/addrecipe.jsx</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">scripts/components/addrecipe.jsx</span></h1>
+    <h2>
+        Statements: <span class="metric">37.21% <small>(16 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">17.24% <small>(5 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">41.67% <small>(5 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">37.21% <small>(16 / 43)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/components/</a> &#187; addrecipe.jsx</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
+const React = require("react");
+const RecipeActions = require("../actions/RecipeActions");
+const RecipeStore = require("../stores/RecipeStore");
+const UserStore = require("../stores/UserStore.js");
+const AddRecipe = React.createClass({
+	getInitialState() {
+		return {
+			modal : false,
+			invalid: false,
+			ingredients : [{}]
+		}
+	},
+	componentDidMount() {
+		RecipeStore.listen(this.onChange);
+		RecipeActions.updateRecipes();
+	},
+	componentWillUnmount<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >		RecipeStore.unlisten(this.onChange);</span>
+	},
+	onChange(state) {
+		this.setState(state);
+	},
+	popupAddRecipe(){
+		this.setState({modal: true, invalid: false, ingredients: [{}]});
+		RecipeActions.hideRecipes();
+	},
+	popupHideAddRecipe<span class="fstat-no" title="function not covered" >(){</span>
+<span class="cstat-no" title="statement not covered" >		this.setState({modal: false, invalid: false, ingredients: [{}]});</span>
+<span class="cstat-no" title="statement not covered" >		RecipeActions.showRecipes();</span>
+	},
+	addRecipe<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >		let _this = this;</span>
+<span class="cstat-no" title="statement not covered" >		let title = this.refs.title.getDOMNode().value.trim();</span>
+<span class="cstat-no" title="statement not covered" >		let description = this.refs.description.getDOMNode().value.trim();</span>
+<span class="cstat-no" title="statement not covered" >		let cookingInstructions = _this.refs.cookingInstructions.getDOMNode().value.trim();</span>
+<span class="cstat-no" title="statement not covered" >		let image = _this.refs.image.getDOMNode().value.trim();</span>
+<span class="cstat-no" title="statement not covered" >		let ingredients = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this.state.ingredients.forEach(<span class="fstat-no" title="function not covered" >function(el, index) {</span></span>
+<span class="cstat-no" title="statement not covered" >			let ingredient = _this.refs['ingredient' + index].getDOMNode().value.trim();</span>
+<span class="cstat-no" title="statement not covered" >			let measurement = _this.refs['measurement' + index].getDOMNode().value.trim();</span>
+<span class="cstat-no" title="statement not covered" >			ingredients.push({ingredient: ingredient, measurement: measurement})</span>
+		})
+<span class="cstat-no" title="statement not covered" >		if(title &amp;&amp; description &amp;&amp; cookingInstructions){</span>
+<span class="cstat-no" title="statement not covered" >			RecipeActions.addRecipe({title: title, info: description, ingredients: ingredients, cookingInstructions: cookingInstructions, img: image});</span>
+<span class="cstat-no" title="statement not covered" >			this.setState({modal: false, ingredients: [{}], invalid: false});</span>
+<span class="cstat-no" title="statement not covered" >			RecipeActions.showRecipes();</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			this.setState({invalid: true});</span>
+		}
+&nbsp;
+	},
+	addIngredient<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >		this.setState({ingredients: this.state.ingredients.concat({})});</span>
+	},
+	removeIngredient<span class="fstat-no" title="function not covered" >(i) {</span>
+<span class="cstat-no" title="statement not covered" >		let ingredients = this.state.ingredients;</span>
+<span class="cstat-no" title="statement not covered" >		ingredients.splice(i, 1);</span>
+<span class="cstat-no" title="statement not covered" >		this.setState({ingredients: ingredients});</span>
+	},
+	eachIngredient<span class="fstat-no" title="function not covered" >(ingredient, i) {</span>
+<span class="cstat-no" title="statement not covered" >		let length = this.state.ingredients.length - 1;</span>
+<span class="cstat-no" title="statement not covered" >		return (</span>
+			&lt;div key={i}&gt;
+				{i === length &amp;&amp; i !== 0 ?
+					&lt;div className="col s2"&gt;
+						&lt;a className="animated rubberBand btn-floating btn-large waves-effect waves-light red lighten-1"
+							onClick={this.removeIngredient.bind(this, i)}&gt;&lt;i className="material-icons"&gt;clear&lt;/i&gt;&lt;/a&gt;
+					&lt;/div&gt; : null }
+					&lt;div className={i !== length || i === 0 ? "input-field col s4 offset-s2" : "input-field col s4"}&gt;
+						&lt;input ref={"ingredient"+i} type="text" id={"ingredient"+i} className="red-text text-lighten-4"/&gt;
+						&lt;label htmlFor={"ingredient"+i} className="red-text text-lighten-4"&gt;Ingredient&lt;/label&gt;
+					&lt;/div&gt;
+					&lt;div className="input-field col s4"&gt;
+						&lt;input type="text" ref={"measurement"+i} id={"measurement"+i} className="red-text text-lighten-4"/&gt;
+						&lt;label htmlFor={"measurement"+i} className="red-text text-lighten-4"&gt;Measurement&lt;/label&gt;
+					&lt;/div&gt;
+					{i === length ?
+						&lt;div className="col s2"&gt;
+							&lt;a className="animated rubberBand btn-floating btn-large waves-effect waves-light red lighten-1"
+								onClick={this.addIngredient}&gt;&lt;i className="material-icons"&gt;add&lt;/i&gt;&lt;/a&gt;
+						&lt;/div&gt; : null }
+						&lt;div className="clear"&gt;
+						&lt;/div&gt;
+			&lt;/div&gt;
+		)
+	},
+	render() {
+		<span class="missing-if-branch" title="if path not taken" >I</span>if(this.state.modal &amp;&amp; UserStore.getState().userLoggedIn){
+<span class="cstat-no" title="statement not covered" >			return (</span>
+				&lt;div&gt;
+					&lt;div className="col s12 m12"&gt;
+						&lt;a className="animated flip btn-floating btn-large waves-effect waves-light red lighten-1 addRecipeButton"
+							onClick={this.state.model === true ? this.popupAddRecipe : this.popupHideAddRecipe}&gt;&lt;i className="material-icons"&gt;clear&lt;/i&gt;&lt;/a&gt;
+					&lt;/div&gt;
+					&lt;div className="col s12 m12 addRecipe animated pulse"&gt;
+						&lt;div className="input-field col s8 offset-s2 red-text text-lighten-4"&gt;
+							&lt;input required ref="title" type="text" id="title" className="red-text text-lighten-4"/&gt;
+							&lt;label htmlFor="title" className="red-text text-lighten-4"&gt;Recipe Name&lt;/label&gt;
+						&lt;/div&gt;
+						&lt;div className="input-field col s8 offset-s2"&gt;
+							&lt;textarea required ref="description" id="description" className="materialize-textarea red-text text-lighten-4"&gt;&lt;/textarea&gt;
+							&lt;label htmlFor="description"&gt;Description&lt;/label&gt;
+						&lt;/div&gt;
+						&lt;div className="clear"&gt;
+						&lt;/div&gt;
+						{this.state.ingredients.map(this.eachIngredient)}
+						&lt;div className="input-field col s8 offset-s2"&gt;
+							&lt;textarea required ref="cookingInstructions" id="cookingInstructions" className="materialize-textarea red-text text-lighten-4"&gt;
+							&lt;/textarea&gt;
+							&lt;label htmlFor="cookingInstructions"&gt;Cooking Instructions&lt;/label&gt;
+						&lt;/div&gt;
+						&lt;div className="input-field col s8 offset-s2 red-text text-lighten-4"&gt;
+							&lt;input required ref="image" type="text" id="image_url" className="red-text text-lighten-4"/&gt;
+							&lt;label htmlFor="image_url" className="red-text text-lighten-4"&gt;Image Url&lt;/label&gt;
+						&lt;/div&gt;
+						&lt;div className="col s12"&gt;
+							&lt;a className="waves-effect waves-light red darken-1 btn" onClick={this.addRecipe}&gt;&lt;i className="material-icons left"&gt;&lt;/i&gt;Add Recipe&lt;/a&gt;
+						&lt;/div&gt;
+						{this.state.invalid ?
+							&lt;div className="col s12"&gt;
+								&lt;a className="waves-effect waves-light red darken-3 btn"
+									onClick={this.addRecipe}&gt;&lt;i className="material-icons left"&gt;&lt;/i&gt;Recipe Name, Description and Cooking Instructions are required!&lt;/a&gt;
+							&lt;/div&gt; : null}
+						&lt;/div&gt;
+&nbsp;
+				&lt;/div&gt;
+			);
+		} else <span class="missing-if-branch" title="if path not taken" >I</span>if(RecipeStore.getState().single) {
+<span class="cstat-no" title="statement not covered" >			return (</span>
+				&lt;div&gt;
+			  	&lt;div className="col s12 m12"&gt;
+						&lt;a className="animated flip btn-floating btn-large waves-effect waves-light blue lighten-1 addRecipeButton go-back"
+							onClick={this.state.model === true ? this.popupAddRecipe : this.popupHideAddRecipe}&gt;
+							&lt;i className="material-icons"&gt;clear&lt;/i&gt;
+						&lt;/a&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			)
+		} else <span class="missing-if-branch" title="if path not taken" >I</span>if(UserStore.getState().userLoggedIn){
+<span class="cstat-no" title="statement not covered" >			return (</span>
+				&lt;div&gt;
+					&lt;div className="col s12 m12"&gt;
+						&lt;a className="btn-floating btn-large waves-effect waves-light blue darken-1"
+							onClick={this.popupAddRecipe}&gt;&lt;i className="material-icons"&gt;add&lt;/i&gt;&lt;/a&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			)
+		} else {
+			return(null)
+		}
+	}
+});
+&nbsp;
+module.exports = AddRecipe;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Aug 22 2015 23:44:01 GMT-0500 (CDT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

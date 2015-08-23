@@ -1,3 +1,4 @@
+"use strict";
 require("../../styles/main.scss");
 const React = require("react");
 const Router = require("react-router");
