@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for scripts/actions/UserActions.js</title>
+    <title>Code coverage report for scripts/stores/SearchStore.js</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../prettify.css">
     <link rel="stylesheet" href="../../base.css">
@@ -13,15 +13,15 @@
 </head>
 <body>
 <div class="header high">
-    <h1>Code coverage report for <span class="entity">scripts/actions/UserActions.js</span></h1>
+    <h1>Code coverage report for <span class="entity">scripts/stores/SearchStore.js</span></h1>
     <h2>
-        Statements: <span class="metric">89.66% <small>(26 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">96.55% <small>(28 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">70% <small>(7 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">57.14% <small>(4 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">87.5% <small>(7 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric">2 statements, 4 branches</span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/actions/</a> &#187; UserActions.js</div>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">scripts/stores/</a> &#187; SearchStore.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -45,42 +45,42 @@
 18
 19
 20</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">"use strict";
-const alt = require('../alt');
+const alt = require("../alt");
+const SearchActions = require("../actions/SearchActions")
+class SearchStore {
+	constructor() {
+		this.searchText = "";
 &nbsp;
-class UserActions {
-	userIsLoggedIn(callback) {
-		this.dispatch(callback);
+		this.bindListeners({
+			handleSendSearch: SearchActions.SEND_SEARCH
+		});
 	}
-	userLogOut<span class="fstat-no" title="function not covered" >(callback) {</span>
-<span class="cstat-no" title="statement not covered" >		this.dispatch(callback);</span>
-	}
-	userLogin<span class="fstat-no" title="function not covered" >(user) {</span>
-<span class="cstat-no" title="statement not covered" >		this.dispatch(user);</span>
-	}
-	userSignUp<span class="fstat-no" title="function not covered" >(user) {</span>
-<span class="cstat-no" title="statement not covered" >		this.dispatch(user);</span>
+&nbsp;
+	handleSendSearch<span class="fstat-no" title="function not covered" >(searchText) {</span>
+<span class="cstat-no" title="statement not covered" >		this.searchText = searchText;</span>
 	}
 }
-module.exports = alt.createActions(UserActions);
+&nbsp;
+module.exports = alt.createStore(SearchStore, 'SearchStore');
 &nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>

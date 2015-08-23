@@ -6,17 +6,14 @@ const AddRecipe = require("../components/addrecipe.jsx");
 const RecipeBox = require("../components/recipebox.jsx");
 const UserStore = require("../stores/UserStore.js");
 const UserActions = require("../actions/UserActions.js");
-const Router = require("react-router");
+
 
 const App = React.createClass({
-	mixins : [Router.Navigation],
 	searchText: "",
 	componentWillMount() {
 		UserActions.userIsLoggedIn(function(){
-			if(!this.state.userLoggedIn){
-				/*this.transitionTo('/login');*/
-			}
-		}.bind(this));
+
+		});
 	},
 	getInitialState() {
 		return UserStore.getState();
